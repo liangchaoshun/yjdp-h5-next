@@ -8,6 +8,10 @@ module.exports = {
         source: '/api/:path*',
         destination: 'http://localhost:7717/wx/yjdp/api/:path*',
       },
+      {
+        source: '/',
+        destination: '/home',
+      },
     ]
   },
 }
