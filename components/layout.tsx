@@ -1,9 +1,13 @@
+import classNames from 'classnames'
 import Link from 'next/link'
+import styles from './layout.module.scss'
 
 export default function Layout(props: any) {
   return (
     <div className='w-screen min-h-screen bg-slate-100 flex flex-col'>
-      <main className='flex-1'>{props.children}</main>
+      <main className={classNames(styles.section, 'overflow-y-auto')}>
+        {props.children}
+      </main>
       <footer className='h-12 leading-loose bg-white flex flex-row justify-between'>
         <div className='flex-1'>
           <Link href='/home' className='text-slate-800'>
