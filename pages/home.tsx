@@ -2,14 +2,15 @@ import type { FC } from 'react'
 import Head from 'next/head'
 import { Carousel } from 'antd'
 import Image from 'next/image'
-import Link from 'next/link'
 import classNames from 'classnames'
+import { useRouter } from 'next/router'
 import { fetchBannerList, fetchHomeGoodsList } from '../http/home'
 
 import styles from './home.module.scss'
 
 const Home: FC<any> = (props) => {
   const { banner, goods } = props
+  const router = useRouter()
 
   return (
     <div>
@@ -19,15 +20,17 @@ const Home: FC<any> = (props) => {
       <main>
         <Carousel autoplay>
           {banner.map((item: any) => (
-            <div className='h-96' key={item._id}>
-              <Link href='/contact'>
-                <Image
-                  src={item.path}
-                  layout='responsive'
-                  width={375}
-                  height={375}
-                />
-              </Link>
+            <div
+              className='h-96'
+              key={item._id}
+              onClick={() => router.push(`/detail/${item._id}`)}
+            >
+              <Image
+                src={item.path}
+                layout='responsive'
+                width={375}
+                height={375}
+              />
             </div>
           ))}
         </Carousel>
@@ -36,6 +39,7 @@ const Home: FC<any> = (props) => {
             <div
               className='bg-white overflow-hidden rounded box-border border border-solid border-[#9e9e9e66]'
               key={item._id}
+              onClick={() => router.push(`/detail/${item._id}`)}
             >
               <div className=''>
                 <Image src={item.icon_url} width={170.5} height={170.5} />
