@@ -4,11 +4,12 @@ import { Carousel } from 'antd'
 import Image from 'next/image'
 import Link from 'next/link'
 import classNames from 'classnames'
+import { fetchBannerList, fetchHomeGoodsList } from '../http/home'
 
 import styles from './home.module.scss'
 
 const Home: FC<any> = (props) => {
-  const { banner, products } = props
+  const { banner, goods } = props
 
   return (
     <div>
@@ -31,7 +32,7 @@ const Home: FC<any> = (props) => {
           ))}
         </Carousel>
         <section className='grid grid-cols-2 gap-2.5 p-2.5'>
-          {products.map((item: any) => (
+          {goods.map((item: any) => (
             <div
               className='bg-white overflow-hidden rounded box-border border border-solid border-[#9e9e9e66]'
               key={item._id}
@@ -63,35 +64,21 @@ const Home: FC<any> = (props) => {
 }
 
 export async function getStaticProps() {
-  const bannerResult = (await fetch(
-    `${process.env.NEXT_PUBLIC_HTTP_PREFIX}/api/goods/home/banner`
-  )) as unknown as any
-
-  const productsResult = (await fetch(
-    `${process.env.NEXT_PUBLIC_HTTP_PREFIX}/api/goods/home/products`,
-    {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ page_index: 1 }),
-    }
-  )) as unknown as any
+  const bannerResult = await fetchBannerList()
+  const goodsResult = await fetchHomeGoodsList()
 
   // console.log('bannerResult => ', bannerResult)
 
-  const { data: banner_data, error_code: banner_ecode } =
-    await bannerResult.json()
+  const { data: banner_data, error_code: banner_ecode } = bannerResult
   const banner = banner_ecode === '00' ? banner_data.res : []
 
-  const { data: product_data, error_code: product_ecode } =
-    await productsResult.json()
-  const products = product_ecode === '00' ? product_data.res : []
+  const { data: goods_data, error_code: goods_ecode } = goodsResult
+  const goods = goods_ecode === '00' ? goods_data.res : []
 
   return {
     props: {
       banner,
-      products,
+      goods,
     },
     revalidate: 1800, // 秒
   }

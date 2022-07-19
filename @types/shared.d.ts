@@ -3,7 +3,7 @@ export interface LocalErrorMsgType extends Record<string, any> {
 }
 
 export interface LocalResponseType {
-  data: any
+  data: { res: any }
   error_code: string
   error_msg: string | LocalErrorMsgType
 }

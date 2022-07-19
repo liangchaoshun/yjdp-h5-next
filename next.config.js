@@ -3,7 +3,7 @@ module.exports = {
   reactStrictMode: true,
   ignoreBuildErrors: true,
   images: {
-    domains: ['localhost', 'https://liangchaoshun.top'],
+    domains: ['localhost', 'liangchaoshun.top'],
   },
   async rewrites() {
     return [
