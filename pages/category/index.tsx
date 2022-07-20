@@ -55,14 +55,13 @@ const Category: FC<any> = (props) => {
               key={item._id}
               onClick={() => router.push(`/category/${item._id}`)}
             >
-              <div className='w-[70px] h-[70px]'>
-                <Image
-                  className='inline-block'
-                  src={item.icon_url}
-                  width={70}
-                  height={70}
-                />
-              </div>
+              <Image
+                src={item.icon_url}
+                width={70}
+                height={70}
+                priority
+                alt='wow!'
+              />
               <div className='p-2.5 text-xs text-[#423f3f] leading-4 text-center'>
                 {item.name_en}
               </div>

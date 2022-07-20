@@ -3,12 +3,13 @@ import Link from 'next/link'
 import styles from './layout.module.scss'
 import { useRouter } from 'next/router'
 
-// 只有这三个页面显示 tabbar
-const showTabbarRoutes = ['/home', '/category', '/contact']
-
 export default function Layout(props: any) {
   const { route } = useRouter()
-  const showTabbar = showTabbarRoutes.includes(route)
+  const isHome = route === '/home'
+  const isCategory = route === '/category'
+  const isContact = route === '/contact'
+  const showTabbar = isHome || isCategory || isContact // 只有这三个页面显示 tabbar
+
   return (
     <div className='w-screen min-h-screen bg-slate-100 flex flex-col'>
       <main
@@ -22,24 +23,48 @@ export default function Layout(props: any) {
       {showTabbar ? (
         <footer className='h-12 leading-loose bg-white flex flex-row justify-between'>
           <div className='flex-1'>
-            <Link href='/home' className='text-slate-800'>
-              <div className='flex flex-col leading-loose justify-center items-center'>
+            <Link href='/home'>
+              <div
+                className={classNames(
+                  {
+                    'text-slate-800': !isHome,
+                    'text-pink-600': isHome,
+                  },
+                  'flex flex-col leading-loose justify-center items-center'
+                )}
+              >
                 <span className='iconfont icon-home text-2xl' />
                 <p className='text-xs'>home</p>
               </div>
             </Link>
           </div>
           <div className='flex-1'>
-            <Link href='/category' className='text-slate-800'>
-              <div className='flex flex-col leading-loose justify-center items-center'>
+            <Link href='/category'>
+              <div
+                className={classNames(
+                  {
+                    'text-slate-800': !isCategory,
+                    'text-pink-600': isCategory,
+                  },
+                  'flex flex-col leading-loose justify-center items-center'
+                )}
+              >
                 <span className='iconfont icon-category text-2xl' />
                 <p className='text-xs'>category</p>
               </div>
             </Link>
           </div>
           <div className='flex-1'>
-            <Link href='/contact' className='text-slate-800'>
-              <div className='flex flex-col leading-loose justify-center items-center'>
+            <Link href='/contact'>
+              <div
+                className={classNames(
+                  {
+                    'text-slate-800': !isContact,
+                    'text-pink-600': isContact,
+                  },
+                  'flex flex-col leading-loose justify-center items-center'
+                )}
+              >
                 <span className='iconfont icon-contact text-2xl' />
                 <p className='text-xs'>contact</p>
               </div>

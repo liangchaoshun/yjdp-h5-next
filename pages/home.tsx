@@ -21,7 +21,7 @@ const Home: FC<any> = (props) => {
         <Carousel autoplay>
           {banner.map((item: any) => (
             <div
-              className='h-96'
+              className='h-[23.4375rem] overflow-hidden'
               key={item._id}
               onClick={() => router.push(`/detail/${item._id}`)}
             >
@@ -30,6 +30,8 @@ const Home: FC<any> = (props) => {
                 layout='responsive'
                 width={375}
                 height={375}
+                priority
+                alt='wow!'
               />
             </div>
           ))}
@@ -41,9 +43,14 @@ const Home: FC<any> = (props) => {
               key={item._id}
               onClick={() => router.push(`/detail/${item._id}`)}
             >
-              <div className=''>
-                <Image src={item.icon_url} width={170.5} height={170.5} />
-              </div>
+              <Image
+                src={item.icon_url}
+                layout='responsive'
+                width={170.5}
+                height={170.5}
+                priority
+                alt='wow!'
+              />
               <div className='p-2.5'>
                 <div
                   className={classNames(
@@ -70,8 +77,6 @@ const Home: FC<any> = (props) => {
 export async function getStaticProps() {
   const bannerResult = await fetchBannerList()
   const goodsResult = await fetchHomeGoodsList()
-
-  // console.log('bannerResult => ', bannerResult)
 
   const { data: banner_data, error_code: banner_ecode } = bannerResult
   const banner = banner_ecode === '00' ? banner_data.res : []
