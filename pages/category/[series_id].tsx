@@ -22,7 +22,7 @@ const SeriesGoodsList: FC<any> = (props) => {
         <div>
           {goods.map((item: GoodsInfoType) => (
             <div
-              className='flex flex-row h-[135px] mb-2.5 last:mb-0 rounded bg-white'
+              className='flex flex-row h-[8.4375rem] mb-2.5 last:mb-0 rounded bg-white'
               key={item._id}
               onClick={() => router.push(`/detail/${item._id}`)}
             >
@@ -39,7 +39,7 @@ const SeriesGoodsList: FC<any> = (props) => {
                 <div
                   className={classNames(
                     styles.desc,
-                    'h-[3.8125rem] text-sm text-[#423f3f] overflow-hidden text-ellipsis'
+                    'h-[4rem] text-sm text-[#423f3f] overflow-hidden text-ellipsis'
                   )}
                 >
                   {item.desc_en}

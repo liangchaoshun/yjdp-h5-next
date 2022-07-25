@@ -51,7 +51,7 @@ const Category: FC<any> = (props) => {
         <div className='grid grid-rows-[repeat(auto-fill, 246px)] grid-cols-3 gap-2.5 p-2.5 box-border'>
           {seriesData.map((item: any) => (
             <div
-              className='flex flex-col justify-center items-center overflow-hidden max-h-[37.5rem] rounded box-border'
+              className='flex flex-col justify-center items-center overflow-hidden max-h-[9.375rem] rounded box-border'
               key={item._id}
               onClick={() => router.push(`/category/${item._id}`)}
             >

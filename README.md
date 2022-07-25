@@ -21,3 +21,8 @@ pnpm create next-app --example with-tailwindcss with-tailwindcss-app
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+
+#### 响应式布局
+
+- tailwind.css 默认是 <code>1rem=16px</code>
+- next.js 固定了标签 <code>meta[name='viewport']</code>，布局不会根据 dpr 设置缩放 scale，所以没处理 1px 问题
