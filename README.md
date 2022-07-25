@@ -24,5 +24,12 @@ Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&ut
 
 #### 响应式布局
 
-- tailwind.css 默认是 <code>1rem=16px</code>
-- next.js 固定了标签 <code>meta[name='viewport']</code>，布局不会根据 dpr 设置缩放 scale，所以没处理 1px 问题
+- tailwind.css 默认是 1rem=16px
+- next.js 固定了标签 meta[name='viewport']，布局不会根据 dpr 设置缩放 scale，所以没处理 1px 问题
+
+#### Linux 部署
+- 拷贝整个目录（注意是哪个分支）的压缩包到 Linux 上
+- 解压：unzip __project_name__
+- 安装依赖：pnpm in
+- 构建：pnpm run build
+- 用 pm2 启动后台进程管理项目：pm2 start pnpm --name "nextjs" -- run start
