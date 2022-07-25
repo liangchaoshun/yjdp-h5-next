@@ -1,4 +1,5 @@
 import classNames from 'classnames'
+import Head from 'next/head'
 import Link from 'next/link'
 import styles from './layout.module.scss'
 import { useRouter } from 'next/router'
@@ -12,6 +13,9 @@ export default function Layout(props: any) {
 
   return (
     <div className='w-screen min-h-screen bg-slate-100 flex flex-col'>
+      <Head>
+        <meta name="description" content="incandescent lamps,two-color light,decorative lights,lamp,China,applicable to multiple scenarios" />
+      </Head>
       <main
         className={classNames(
           { [styles.section]: showTabbar, 'h-screen': !showTabbar },
