@@ -2,8 +2,9 @@ import '../styles/globals.css'
 import '../styles/antd.override.css'
 import type { AppProps } from 'next/app'
 import Layout from '../components/layout'
+import { wrapper } from '../store/store'
 
-function MyApp({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   return (
     <Layout>
       <Component {...pageProps} />
@@ -11,4 +12,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   )
 }
 
-export default MyApp
+export default wrapper.withRedux(App)

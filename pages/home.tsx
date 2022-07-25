@@ -5,13 +5,17 @@ import Image from 'next/image'
 import classNames from 'classnames'
 import { useRouter } from 'next/router'
 import { fetchBannerList, fetchHomeGoodsList } from '../http/home'
+import { useSelector } from 'react-redux'
+import { wrapper, State } from '../store/store'
 
 import styles from './home.module.scss'
 
 const Home: FC<any> = (props) => {
   const { banner, goods } = props
   const router = useRouter()
+  const { tick } = useSelector<State, State>(state => state);
 
+  console.log('tick =>? ', tick)
   return (
     <div>
       <Head>
@@ -73,8 +77,12 @@ const Home: FC<any> = (props) => {
     </div>
   )
 }
-
-export async function getStaticProps() {
+export const getStaticProps = wrapper.getStaticProps(store => async () => {
+  store.dispatch({
+    type: 'TICK',
+    payload: 'was set in other page',
+  })
+// export async function getStaticProps() {
   const bannerResult = await fetchBannerList()
   const goodsResult = await fetchHomeGoodsList()
 
@@ -91,6 +99,6 @@ export async function getStaticProps() {
     },
     revalidate: 1800, // 秒
   }
-}
+})
 
 export default Home
