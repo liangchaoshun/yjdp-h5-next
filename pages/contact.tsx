@@ -1,7 +1,10 @@
 import Head from 'next/head'
-import type { FC } from 'react'
+import { FC, useState } from 'react'
+import { Button } from 'antd'
+import A from '../components/A'
 
 const Contact: FC<any> = () => {
+  const [couter, setCouter] = useState(0)
   return (
     <div className='h-full p-2.5'>
       <Head>
@@ -26,6 +29,8 @@ const Contact: FC<any> = () => {
         <span className='text-gray-700 mr-2.5'>Facebook:</span>
         <span className='text-sky-500'>Jessica Yan Liang</span>
       </div>
+      <Button onClick={() => setCouter(couter + 1)}>数字：{couter}</Button>
+      <A />
     </div>
   )
 }

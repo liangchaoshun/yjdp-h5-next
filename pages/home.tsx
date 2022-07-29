@@ -1,12 +1,13 @@
-import type { FC } from 'react'
+import { FC, useState } from 'react'
 import Head from 'next/head'
-import { Carousel } from 'antd'
+import { Carousel, Button } from 'antd'
 import Image from 'next/image'
 import classNames from 'classnames'
 import { useRouter } from 'next/router'
 import { fetchBannerList, fetchHomeGoodsList } from '../http/home'
 import { useSelector } from 'react-redux'
 import { wrapper, State } from '../store/store'
+import A from '../components/A'
 
 import styles from './home.module.scss'
 
@@ -14,6 +15,7 @@ const Home: FC<any> = (props) => {
   const { banner, goods } = props
   const router = useRouter()
   const { tick } = useSelector<State, State>(state => state);
+  const [couter, setCouter] = useState(0)
 
   console.log('tick =>? ', tick)
   return (
@@ -22,7 +24,9 @@ const Home: FC<any> = (props) => {
         <title>home</title>
       </Head>
       <main>
-        <Carousel autoplay>
+        <Button onClick={() => setCouter(couter + 1)}>数字：{couter}</Button>
+        <A />
+        {/* <Carousel autoplay>
           {banner.map((item: any) => (
             <div
               className='h-[23.4375rem] overflow-hidden'
@@ -39,7 +43,7 @@ const Home: FC<any> = (props) => {
               />
             </div>
           ))}
-        </Carousel>
+        </Carousel> */}
         <section className='grid grid-cols-2 gap-2.5 p-2.5'>
           {goods.map((item: any) => (
             <div
@@ -94,11 +98,12 @@ export const getStaticProps = wrapper.getStaticProps(store => async () => {
 
   return {
     props: {
-      banner,
+      // banner,
       goods,
     },
     revalidate: 1800, // 秒
   }
+// }
 })
 
 export default Home

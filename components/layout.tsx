@@ -23,19 +23,21 @@ export default function Layout(props: any) {
       {showTabbar ? (
         <footer className='h-12 leading-loose bg-white flex flex-row justify-between'>
           <div className='flex-1'>
-            <Link href='/home'>
-              <div
-                className={classNames(
-                  {
-                    'text-slate-800': !isHome,
-                    'text-pink-600': isHome,
-                  },
-                  'flex flex-col leading-loose justify-center items-center'
-                )}
-              >
-                <span className='iconfont icon-home text-2xl' />
-                <p className='text-xs'>home</p>
-              </div>
+            <Link href='/home' passHref scroll={false}>
+              <a>
+                <div
+                  className={classNames(
+                    {
+                      'text-slate-800': !isHome,
+                      'text-pink-600': isHome,
+                    },
+                    'flex flex-col leading-loose justify-center items-center'
+                  )}
+                >
+                  <span className='iconfont icon-home text-2xl' />
+                  <p className='text-xs'>home</p>
+                </div>
+              </a>
             </Link>
           </div>
           <div className='flex-1'>
@@ -55,19 +57,21 @@ export default function Layout(props: any) {
             </Link>
           </div>
           <div className='flex-1'>
-            <Link href='/contact'>
-              <div
-                className={classNames(
-                  {
-                    'text-slate-800': !isContact,
-                    'text-pink-600': isContact,
-                  },
-                  'flex flex-col leading-loose justify-center items-center'
-                )}
-              >
-                <span className='iconfont icon-contact text-2xl' />
-                <p className='text-xs'>contact</p>
-              </div>
+            <Link href='/contact' passHref scroll={false}>
+              <a>
+                <div
+                  className={classNames(
+                    {
+                      'text-slate-800': !isContact,
+                      'text-pink-600': isContact,
+                    },
+                    'flex flex-col leading-loose justify-center items-center'
+                  )}
+                >
+                  <span className='iconfont icon-contact text-2xl' />
+                  <p className='text-xs'>contact</p>
+                </div>
+              </a>
             </Link>
           </div>
         </footer>

@@ -8,8 +8,6 @@ import {
 } from '../../http/category'
 import type { CategoryData, SeriesData } from '../../@types/category'
 import classNames from 'classnames'
-import { useSelector } from 'react-redux'
-import type { State } from '../../store/store'
 
 const Category: FC<any> = (props) => {
   const { menuList, seriesList } = props
@@ -17,10 +15,6 @@ const Category: FC<any> = (props) => {
   const [seriesData, setSeriesData] = useState(seriesList)
 
   const router = useRouter()
-
-  const { tick } = useSelector<State, State>(state => state);
-
-  console.log('tick =>? ', tick)
 
   // 切换类别
   const tapMenuItem = async (index: number, id: string) => {
