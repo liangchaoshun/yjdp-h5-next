@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import {
   fetchAllCategories,
   fetchSeriesByCategoryId,
@@ -9,12 +9,16 @@ import {
 import type { CategoryData, SeriesData } from '../../@types/category'
 import classNames from 'classnames'
 
-const Category: FC<any> = (props) => {
+// const Category: FC<any> = (props) => {
+  function Category(props: any) {
   const { menuList, seriesList } = props
   const [currIndex, setCurrIndex] = useState(0)
   const [seriesData, setSeriesData] = useState(seriesList)
 
   const router = useRouter()
+  useEffect(() => {
+    console.log('category.tsx init')
+  }, [])
 
   // 切换类别
   const tapMenuItem = async (index: number, id: string) => {

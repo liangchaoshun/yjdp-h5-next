@@ -12,7 +12,7 @@ export const fetchBannerList = async () => {
 
 // 商品列表
 export const fetchHomeGoodsList = async (
-  options: HomeFetchGoodListParams = { page_index: 1 }
+  options: HomeFetchGoodListParams = { page_index: 1, page_size: 10 }
 ) => {
   const result = await fetch(HOME_GOODS, {
     method: 'post',

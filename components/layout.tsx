@@ -1,7 +1,8 @@
-import classNames from 'classnames'
+import { cloneElement } from 'react'
 import Link from 'next/link'
-import styles from './layout.module.scss'
+import classNames from 'classnames'
 import { useRouter } from 'next/router'
+import styles from './layout.module.scss'
 
 export default function Layout(props: any) {
   const { route } = useRouter()
@@ -18,64 +19,63 @@ export default function Layout(props: any) {
           'overflow-y-auto'
         )}
       >
-        {props.children}
+        {cloneElement(props.children)}
       </main>
-      {showTabbar ? (
-        <footer className='h-12 leading-loose bg-white flex flex-row justify-between'>
-          <div className='flex-1'>
-            <Link href='/home' passHref scroll={false}>
-              <a>
-                <div
-                  className={classNames(
-                    {
-                      'text-slate-800': !isHome,
-                      'text-pink-600': isHome,
-                    },
-                    'flex flex-col leading-loose justify-center items-center'
-                  )}
-                >
-                  <span className='iconfont icon-home text-2xl' />
-                  <p className='text-xs'>home</p>
-                </div>
-              </a>
-            </Link>
-          </div>
-          <div className='flex-1'>
-            <Link href='/category'>
-              <div
-                className={classNames(
-                  {
-                    'text-slate-800': !isCategory,
-                    'text-pink-600': isCategory,
-                  },
-                  'flex flex-col leading-loose justify-center items-center'
-                )}
-              >
-                <span className='iconfont icon-category text-2xl' />
-                <p className='text-xs'>category</p>
-              </div>
-            </Link>
-          </div>
-          <div className='flex-1'>
-            <Link href='/contact' passHref scroll={false}>
-              <a>
-                <div
-                  className={classNames(
-                    {
-                      'text-slate-800': !isContact,
-                      'text-pink-600': isContact,
-                    },
-                    'flex flex-col leading-loose justify-center items-center'
-                  )}
-                >
-                  <span className='iconfont icon-contact text-2xl' />
-                  <p className='text-xs'>contact</p>
-                </div>
-              </a>
-            </Link>
-          </div>
-        </footer>
-      ) : null}
+      {/* {showTabbar ? ( */}
+      <footer className='h-12 leading-loose bg-white flex flex-row justify-between'>
+        <div className='flex-1'>
+          <Link href='/home' scroll={false} shallow={true}>
+            <a
+              className='flex flex-col leading-loose justify-center items-center'
+              // className={classNames(
+              //   {
+              //     'text-slate-800': !isHome,
+              //     'text-pink-600': isHome,
+              //   },
+              //   'flex flex-col leading-loose justify-center items-center'
+              // )}
+            >
+              <span className='iconfont icon-home text-2xl' />
+              <p className='text-xs'>home</p>
+            </a>
+          </Link>
+        </div>
+        <div className='flex-1'>
+          <Link href='/category' scroll={false} shallow={true}>
+            <a
+              className='flex flex-col leading-loose justify-center items-center'
+              // className={classNames(
+              //   {
+              //     'text-slate-800': !isCategory,
+              //     'text-pink-600': isCategory,
+              //   },
+              //   'flex flex-col leading-loose justify-center items-center'
+              // )}
+            >
+              <span className='iconfont icon-category text-2xl' />
+              <p className='text-xs'>category</p>
+            </a>
+          </Link>
+        </div>
+        <div className='flex-1'>
+          <Link href='/contact' scroll={false} shallow={true}>
+            <a
+              className='flex flex-col leading-loose justify-center items-center'
+              // className={classNames(
+              //   {
+              //     'text-slate-800': !isContact,
+              //     'text-pink-600': isContact,
+              //   },
+              //   'flex flex-col leading-loose justify-center items-center'
+              // )}
+            >
+              <span className='iconfont icon-contact text-2xl' />
+              <p className='text-xs'>contact</p>
+            </a>
+          </Link>
+        </div>
+      </footer>
+      {/* ) : null} */}
     </div>
   )
 }

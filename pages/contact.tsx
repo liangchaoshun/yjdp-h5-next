@@ -1,10 +1,14 @@
 import Head from 'next/head'
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { Button } from 'antd'
 import A from '../components/A'
 
-const Contact: FC<any> = () => {
+// const Contact: FC<any> = () => {
+  function Contact(props: any) {
   const [couter, setCouter] = useState(0)
+  useEffect(() => {
+    console.log('contact.tsx init')
+  }, [])
   return (
     <div className='h-full p-2.5'>
       <Head>

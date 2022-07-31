@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import Head from 'next/head'
 import { Carousel, Button } from 'antd'
 import Image from 'next/image'
@@ -11,13 +11,18 @@ import A from '../components/A'
 
 import styles from './home.module.scss'
 
-const Home: FC<any> = (props) => {
+// const Home: FC<any> = (props) => {
+  function  Home(props: any) {
   const { banner, goods } = props
   const router = useRouter()
-  const { tick } = useSelector<State, State>(state => state);
+  // const { tick } = useSelector<State, State>(state => state);
   const [couter, setCouter] = useState(0)
 
-  console.log('tick =>? ', tick)
+  useEffect(() => {
+    console.log('home.tsx init')
+  }, [])
+
+  // console.log('tick =>? ', tick)
   return (
     <div>
       <Head>
@@ -81,12 +86,12 @@ const Home: FC<any> = (props) => {
     </div>
   )
 }
-export const getStaticProps = wrapper.getStaticProps(store => async () => {
-  store.dispatch({
-    type: 'TICK',
-    payload: 'was set in other page',
-  })
-// export async function getStaticProps() {
+// export const getStaticProps = wrapper.getStaticProps(store => async () => {
+//   store.dispatch({
+//     type: 'TICK',
+//     payload: 'was set in other page',
+//   })
+export async function getStaticProps() {
   const bannerResult = await fetchBannerList()
   const goodsResult = await fetchHomeGoodsList()
 
@@ -103,7 +108,7 @@ export const getStaticProps = wrapper.getStaticProps(store => async () => {
     },
     revalidate: 1800, // 秒
   }
-// }
-})
+}
+// })
 
 export default Home
