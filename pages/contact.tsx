@@ -7,8 +7,18 @@ import A from '../components/A'
   function Contact(props: any) {
   const [couter, setCouter] = useState(0)
   useEffect(() => {
-    console.log('contact.tsx init')
+    const hcounter = sessionStorage.getItem('contact-counter')
+    if (hcounter) {
+      setCouter(+hcounter)
+    }
+    console.log('Contact.tsx init', window)
   }, [])
+
+  const setccc = () => {
+    const n = couter + 1
+    setCouter(n)
+    sessionStorage.setItem('contact-counter', `${n}`)
+  }
   return (
     <div className='h-full p-2.5'>
       <Head>
@@ -33,7 +43,7 @@ import A from '../components/A'
         <span className='text-gray-700 mr-2.5'>Facebook:</span>
         <span className='text-sky-500'>Jessica Yan Liang</span>
       </div>
-      <Button onClick={() => setCouter(couter + 1)}>数字：{couter}</Button>
+      <Button onClick={setccc}>数字：{couter}</Button>
       <A />
     </div>
   )

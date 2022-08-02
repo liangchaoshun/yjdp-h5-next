@@ -17,10 +17,20 @@ import styles from './home.module.scss'
   const router = useRouter()
   // const { tick } = useSelector<State, State>(state => state);
   const [couter, setCouter] = useState(0)
-
+  
+  const hcounter = sessionStorage.getItem('home-counter')
+  if (hcounter) {
+    setCouter(+hcounter)
+  }
   useEffect(() => {
-    console.log('home.tsx init')
+    console.log('Home.tsx init')
   }, [])
+
+  const setccc = () => {
+    const n = couter + 1
+    setCouter(n)
+    sessionStorage.setItem('home-counter', `${n}`)
+  }
 
   // console.log('tick =>? ', tick)
   return (
@@ -29,7 +39,7 @@ import styles from './home.module.scss'
         <title>home</title>
       </Head>
       <main>
-        <Button onClick={() => setCouter(couter + 1)}>数字：{couter}</Button>
+        <Button onClick={setccc}>数字：{couter}</Button>
         <A />
         {/* <Carousel autoplay>
           {banner.map((item: any) => (
